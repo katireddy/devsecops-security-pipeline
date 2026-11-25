@@ -1,0 +1,12 @@
+rules:
+  - id: avoid-python-eval
+    pattern: eval(...)
+    message: Avoid eval on dynamic input; use explicit parsing.
+    languages: [python]
+    severity: ERROR
+  - id: avoid-shell-true
+    patterns:
+      - pattern: subprocess.$FUNC(..., shell=True, ...)
+    message: Avoid shell=True with potentially untrusted input.
+    languages: [python]
+    severity: ERROR
