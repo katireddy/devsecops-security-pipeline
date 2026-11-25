@@ -31,3 +31,8 @@ def test_hello_custom_name(client):
 
 def test_hello_blank_name(client):
     assert client.get("/hello?name=%20%20").get_json()["message"] == "Hello, Developer!"
+def test_calculate(client):
+    response = client.get("/calculate?a=10&b=20")
+
+    assert response.status_code == 200
+    assert response.get_json()["result"] == 30

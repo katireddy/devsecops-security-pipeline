@@ -21,3 +21,13 @@ def hello():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
+
+@app.get("/calculate")
+def calculate():
+    try:
+        a = int(request.args.get("a", "0"))
+        b = int(request.args.get("b", "0"))
+    except ValueError:
+        return jsonify(error="Invalid input"), 400
+
+    return jsonify(result=a + b)
